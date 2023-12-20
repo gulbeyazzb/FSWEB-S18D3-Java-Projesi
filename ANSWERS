@@ -51,13 +51,11 @@ GROUP BY i.kitapno
 ORDER BY COUNT(i.kitapno ) ASC
 
 10)
-SELECT k.kitapadi, COUNT(k.kitapno )
+SELECT k.kitapadi, COUNT(i.kitapno )
 FROM kitap k
 LEFT JOIN islem i
 ON i.kitapno=k.kitapno
-WHERE k.kitapno
 GROUP BY k.kitapno
-HAVING COUNT(k.kitapno)
 ORDER BY COUNT(k.kitapno ) ASC
 
 11)
@@ -139,4 +137,29 @@ INNER JOIN tur t
 ON t.turno=k.turno
 
 24)
+SELECT o.ograd, SUM(k.sayfasayisi)
+FROM ogrenci o
+INNER JOIN islem i
+ON i.ogrno=o.ogrno
+INNER JOIN kitap k
+ON k.kitapno=i.kitapno
+WHERE o.ogrno=15
+GROUP BY o.ograd
+
+25)
+ SELECT DISTINCT ograd, COUNT(ograd)
+FROM ogrenci
+GROUP BY ograd
+
+26)
+ SELECT DISTINCT sinif, COUNT(ogrno)
+FROM ogrenci
+GROUP BY sinif
+
+27)
+SELECT cinsiyet , sinif ,COUNT(ogrno)
+FROM ogrenci
+GROUP BY cinsiyet, sinif
+
+
 
